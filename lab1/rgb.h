@@ -3,14 +3,13 @@
 class RGB
 {
 	public:
-		RGB(int r, int g, int b)
+		RGB()
 		{
-			red = r;
-			green = g;
-			blue = b;
+			colors = new int[3];
+      colors[0]=0;
+      colors[1]=0;
+      colors[2]=0;
 		}
 
-    int red;
-    int green;
-    int blue;
+    int* colors;
 };

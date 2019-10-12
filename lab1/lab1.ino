@@ -4,8 +4,11 @@
 #define R_OUT 2
 #define G_OUT 3
 #define B_OUT 4
+#define RED 0
+#define GREEN 1
+#define BLUE 2
 
-RGB ledState(0, 0, 0);
+auto* ledState = new RGB();
 Button redInc(8);
 Button greenInc(9);
 Button blueInc(10);
@@ -23,56 +26,55 @@ void setup()
 
 void loop() 
 {
-    set_rgb_led(ledState);
+    set_rgb_led();
     if (redInc.wasPressed())
     {
-    	ledState.red = inc_number_with_max(ledState.red, 16);
+    	set_led_color(RED, 16);
     	return;
     }
     if (redDec.wasPressed())
     {
-    	ledState.red = dec_number_with_min(ledState.red, 16);
+    	set_led_color(RED, -16);
     	return;
     }
     if (greenInc.wasPressed())
     {
-    	ledState.green = inc_number_with_max(ledState.green, 16);
+    	set_led_color(GREEN, 16);
     	return;
     }
 	  if (greenDec.wasPressed())
     {
-    	ledState.green = dec_number_with_min(ledState.green, 16);
+    	set_led_color(GREEN, -16);
     	return;
     }
     if (blueInc.wasPressed())
     {
-    	ledState.blue = inc_number_with_max(ledState.blue, 16);
+    	set_led_color(BLUE, 16);
     	return;
     }
 	  if (blueDec.wasPressed())
     {
-    	ledState.blue = dec_number_with_min(ledState.blue, 16);
+    	set_led_color(BLUE, -16);
     	return;
     }
 }
 
-void set_rgb_led(RGB rgb)
+void set_rgb_led()
 {
-    analogWrite(R_OUT, 255 - rgb.red);
-    analogWrite(G_OUT, 255 - rgb.green);
-    analogWrite(B_OUT, 255 - rgb.blue);
+    analogWrite(R_OUT, 255 - (ledState -> colors)[RED]);
+    analogWrite(G_OUT, 255 - (ledState -> colors)[GREEN]);
+    analogWrite(B_OUT, 255 - (ledState -> colors)[BLUE]);
 }
 
-int inc_number_with_max(int val, int inc)
+void set_led_color(int index, int diff)
 {
-	int sum = val + inc;
+	int sum = (ledState -> colors)[index] + diff;
+  if(sum > 255){
+    sum = 255;
+  }
+  if (sum < 0){
+    sum = 0;
+  }
 
-	return sum > 255 ? 255 : sum;
-}
-
-int dec_number_with_min(int val, int dec)
-{
-	int diff = val - dec;
-
-	return diff < 0 ? 0 : diff;
+	(ledState -> colors)[index] = sum;
 }
