@@ -1,17 +1,17 @@
 #include "button.h"
 #include "rgb.h"
 
-#define R_OUT 6
-#define G_OUT 7
-#define B_OUT 8
+#define R_OUT 2
+#define G_OUT 3
+#define B_OUT 4
 
-RGB ledState = RGB();
-Button redInc = Button(...);
-Button greenInc = Button(...);
-Button blueInc = Button(...);
-Button redDec = Button(...);
-Button greenDec = Button(...);
-Button blueDec = Button(...);
+RGB ledState(0, 0, 0);
+Button redInc(8);
+Button greenInc(9);
+Button blueInc(10);
+Button redDec(5);
+Button greenDec(6);
+Button blueDec(7);
 
 
 void setup()
@@ -39,7 +39,7 @@ void loop()
     	ledState.green = inc_number_with_max(ledState.green, 16);
     	return;
     }
-	if (greenDec.wasPressed())
+	  if (greenDec.wasPressed())
     {
     	ledState.green = dec_number_with_min(ledState.green, 16);
     	return;
@@ -49,9 +49,9 @@ void loop()
     	ledState.blue = inc_number_with_max(ledState.blue, 16);
     	return;
     }
-	if (blueDec.wasPressed())
+	  if (blueDec.wasPressed())
     {
-    	ledState.green = dec_number_with_min(ledState.blue, 16);
+    	ledState.blue = dec_number_with_min(ledState.blue, 16);
     	return;
     }
 }

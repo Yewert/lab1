@@ -3,14 +3,14 @@
 class RGB
 {
 	public:
-		RGB()
+		RGB(int r, int g, int b)
 		{
-			red = 0;
-			green = 0;
-			blue = 0;
+			red = r;
+			green = g;
+			blue = b;
 		}
 
-		int red;
-		int green;
-		int blue;
-}
+    int red;
+    int green;
+    int blue;
+};
