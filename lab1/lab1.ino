@@ -7,6 +7,8 @@
 #define RED 0
 #define GREEN 1
 #define BLUE 2
+#define DEFAULT_INC 16
+#define DEFAULT_DEC -16
 
 auto* ledState = new RGB();
 Button redInc(8);
@@ -29,32 +31,32 @@ void loop()
     set_rgb_led();
     if (redInc.wasPressed())
     {
-    	set_led_color(RED, 16);
+    	set_led_color(RED,DEFAULT_INC);
     	return;
     }
     if (redDec.wasPressed())
     {
-    	set_led_color(RED, -16);
+    	set_led_color(RED,DEFAULT_DEC);
     	return;
     }
     if (greenInc.wasPressed())
     {
-    	set_led_color(GREEN, 16);
+    	set_led_color(GREEN, DEFAULT_INC);
     	return;
     }
 	  if (greenDec.wasPressed())
     {
-    	set_led_color(GREEN, -16);
+    	set_led_color(GREEN, DEFAULT_DEC);
     	return;
     }
     if (blueInc.wasPressed())
     {
-    	set_led_color(BLUE, 16);
+    	set_led_color(BLUE, DEFAULT_INC);
     	return;
     }
 	  if (blueDec.wasPressed())
     {
-    	set_led_color(BLUE, -16);
+    	set_led_color(BLUE, DEFAULT_DEC);
     	return;
     }
 }

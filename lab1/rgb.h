@@ -11,5 +11,10 @@ class RGB
       colors[2]=0;
 		}
 
+   ~RGB()
+   {
+      delete colors;
+   }
+
     int* colors;
 };
