@@ -13,7 +13,7 @@ class RGB
 
    ~RGB()
    {
-      delete colors;
+      delete[] colors;
    }
 
     int* colors;
